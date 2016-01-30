@@ -20,21 +20,20 @@ public class TweetTest {
 
 	@Test
 	public void TestTweet() {
-		String tweetstring= "new york, the. cartfisk.com/resume.pdf @hot #hastog @ @.cgjas http://google.com";
-		Tweet tweet = new Tweet(tweetstring);
-		assertEquals(tweet.getString(), tweetstring);
+		String teststring= "new york, the. cartfisk.com/resume.pdf @hot #hastog @ @.cgjas http://google.com";
+		Tweet tweet = new Tweet("new york, the. cartfisk.com/resume.pdf @hot #hastog @ @.cgjas http://google.com");
+		assertEquals(tweet.getString(), teststring);
 	}
 	
-	public void TestGetMentions() {
+	@Test
+	public void TestIsMention() {
 		String tweetstring = "new york, the. cartfisk.com/resume.pdf @hot #hashtog @ @.cgjas http://google.com @cartfisk";
-		ArrayList<String> expectedMentions = new ArrayList<>();
-		expectedMentions.add("hot");
-		expectedMentions.add("cartfisk");
-
 		Tweet tweet = new Tweet(tweetstring);
-		assertEquals(tweet.getMentions(), tweetstring);
+		assertEquals(true, tweet.isMention("hot"));
+		assertEquals(true, tweet.isMention("cartfisk"));
 	}
 	
+	@Test
 	public void TestGetHashtags() {
 		String tweetstring = "new york, the. cartfisk.com/resume.pdf @hot #hashtog @ @.cgjas http://google.com @cartfisk";
 		ArrayList<String> expectedHashtags = new ArrayList<>();
@@ -43,6 +42,7 @@ public class TweetTest {
 		assertEquals(tweet.getHashtags(), expectedHashtags);
 	}
 	
+	@Test
 	public void TestGetUrls() {
 		String tweetstring = "new york, the. cartfisk.com/resume.pdf @hot #hashtog @ @.cgjas http://google.com @cartfisk";
 		ArrayList<String> expectedUrls = new ArrayList<>();
@@ -50,10 +50,6 @@ public class TweetTest {
 		expectedUrls.add("http://google.com");
 		Tweet tweet = new Tweet(tweetstring);
 		assertEquals(tweet.getHashtags(), expectedUrls);
-	}
-	
-	public void TestTweetContainer() {
-
 	}
 
 }
