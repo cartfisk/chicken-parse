@@ -11,30 +11,31 @@ public class Tweet {
 
 	public Tweet(String tweetstring) {
 		this.tweetstring = tweetstring;
-		this.mentions = this.addMentions();
+		this.mentions = this.parseMentions();
 		this.hashtags = new ArrayList<>();
 		this.urls = new ArrayList<>();
 	}
 	
 	public ArrayList<String> parseMentions() {
-		int length = this.tweetstring.length();
-		char[] tweet = this.tweetstring.toCharArray();
-		ArrayList<String> mentions = new ArrayList<>();
-		
-		
-		/* for (int i=0; i>length; i++){
-			if (tweet[i] == '@') {	
-				char[] mention = {};
-				int j = 1;
-				while (tweet[i+j] != ' ' || tweet[i+j] != '.' || tweet[i+j] != ','){
-					mention[j--] = tweet[i+j];
-					i++;
-				}
-				mentions.add(mention.toString());
+		String[] mentionsArray = this.tweetstring.split("(?:\\s|\\A)[@]+([A-Za-z0-9-_]+)");
+		//String[] mentionsArray = {"hot", "cartfisk"};
+		int length = mentionsArray.length;
+		if (length > 0){
+			ArrayList<String> mentions = new ArrayList<>();
+			for (int i=0; i<length; i++){
+				mentions.add(mentionsArray[i]);
 			}
+			return mentions;
 		}
-		return mentions; */
+		else {
+			ArrayList<String> mentions = new ArrayList<>();
+			mentions.add("else");
+			return mentions;
+		}
+		
 	}
+	
+	
 	
 	public ArrayList<String> addMentions() {
 		ArrayList<String> mentions = new ArrayList<>();
@@ -44,10 +45,8 @@ public class Tweet {
 	}
 	
 	public boolean isMention(String mention){
-		for (int i=0; i<this.mentions.size(); i++) {
-			if (mentions.contains(mention)) {
-				return true;
-			}
+		if (this.mentions.contains(mention)) {
+			return true;
 		}
 		return false;
 	}
