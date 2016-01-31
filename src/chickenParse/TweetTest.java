@@ -27,20 +27,19 @@ public class TweetTest {
 	
 	@Test
 	public void TestIsMention() {
-		String tweetstring = "new york, the. cartfisk.com/resume.pdf @hot #hastog @ @.cgjas http://google.com";
+		String tweetstring = "new york, the. @cartfisk cartfisk.com/resume.pdf @hot #hashtog @ @.cgjas http://google.com";
 		Tweet tweet = new Tweet(tweetstring);
 		assertEquals(true, tweet.isMention("hot"));
-		//assertEquals(true, tweet.isMention("else"));
+		assertEquals(true, tweet.isMention("cartfisk"));
 	}
 	
-	/*@Test
-	public void TestGetHashtags() {
-		String tweetstring = "new york, the. cartfisk.com/resume.pdf @hot #hashtog @ @.cgjas http://google.com @cartfisk";
-		ArrayList<String> expectedHashtags = new ArrayList<>();
-		expectedHashtags.add("hashtag");
+	@Test
+	public void TestIsHashtag() {
+		String tweetstring = "new york, the. @cartfisk  #art.max cartfisk.com/resume.pdf @hot #hashtog @ @.cgjas http://google.com";
 		Tweet tweet = new Tweet(tweetstring);
-		assertEquals(tweet.getHashtags(), expectedHashtags);
-	}*/
+		assertEquals(true, tweet.isHashtag("art"));
+		assertEquals(true, tweet.isHashtag("hashtog"));
+	}
 	
 	/*@Test
 	public void TestGetUrls() {

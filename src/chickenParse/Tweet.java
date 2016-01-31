@@ -1,6 +1,8 @@
 package chickenParse;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Tweet {
 
@@ -12,33 +14,74 @@ public class Tweet {
 	public Tweet(String tweetstring) {
 		this.tweetstring = tweetstring;
 		this.mentions = this.parseMentions();
-		this.hashtags = new ArrayList<>();
-		this.urls = new ArrayList<>();
+		this.hashtags = this.parseHashtags();
+		this.urls = new ArrayList<String>();
 	}
 	
 	public ArrayList<String> parseMentions() {
-		String[] mentionsArray = this.tweetstring.split("(?:\\s|\\A)[@]+([A-Za-z0-9-_]+)");
-		//String[] mentionsArray = {"hot", "cartfisk"};
-		int length = mentionsArray.length;
-		if (length > 0){
-			ArrayList<String> mentions = new ArrayList<>();
-			for (int i=0; i<length; i++){
-				mentions.add(mentionsArray[i]);
-			}
+		
+		String tweet = this.tweetstring;
+		Pattern MY_PATTERN = Pattern.compile("(?:\\s|\\A)[@]+([A-Za-z0-9-_]+)");
+		Matcher match = MY_PATTERN.matcher(tweet);
+		ArrayList<String> mentions=new ArrayList<String>();
+		while (match.find()) {
+		  //System.out.println(match.group(1));
+		  mentions.add(match.group(1));
+		}
+		if (mentions.size() > 0) {
 			return mentions;
 		}
 		else {
-			ArrayList<String> mentions = new ArrayList<>();
-			mentions.add("else");
-			return mentions;
+			return null;
 		}
 		
 	}
 	
+	public ArrayList<String> parseHashtags() {
+		
+		String tweet = this.tweetstring;
+		Pattern MY_PATTERN = Pattern.compile("(?:\\s|\\A)[#]+([A-Za-z0-9-_]+)");
+		Matcher match = MY_PATTERN.matcher(tweet);
+		ArrayList<String> hashtags=new ArrayList<String>();
+		while (match.find()) {
+		  //System.out.println(match.group(1));
+		  hashtags.add(match.group(1));
+		}
+		if (hashtags.size() > 0) {
+			return hashtags;
+		}
+		else {
+			return null;
+		}
+		
+	}
 	
+	/*
+	public ArrayList<String> parseUrls() {
+		
+		String tweet = this.tweetstring;
+		Pattern MY_PATTERN = Pattern.compile("(?:\\s|\\A)[#]+([A-Za-z0-9-_]+)");
+		Matcher match = MY_PATTERN.matcher(tweet);
+		ArrayList<String> urls=new ArrayList<String>();
+		while (match.find()) {
+		  //System.out.println(match.group(1));
+		  urls.add(match.group(1));
+		}
+		if (urls.size() > 0) {
+			return urls;
+		}
+		else {
+			return null;
+		}
+		
+	}
+	*/
+	
+	
+	// /[A-Za-z]+://[A-Za-z0-9-_]+.[A-Za-z0-9-_:%&~?/.=]+/g
 	
 	public ArrayList<String> addMentions() {
-		ArrayList<String> mentions = new ArrayList<>();
+		ArrayList<String> mentions = new ArrayList<String>();
 		mentions.add("cartfisk");
 		mentions.add("hot");
 		return mentions;
@@ -46,6 +89,13 @@ public class Tweet {
 	
 	public boolean isMention(String mention){
 		if (this.mentions.contains(mention)) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean isHashtag(String hashtag){
+		if (this.hashtags.contains(hashtag)) {
 			return true;
 		}
 		return false;
