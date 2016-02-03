@@ -8,6 +8,7 @@ import java.util.ArrayList;
 //TODO: add methods to return the number of Tweets containing a specific piece of data (rather than the tweets themselves)
 //TODO: add methods to sort data within a TweetContainer
 //TODO: add methods to compare two or more tweet containers
+//TODO: add more constructors with various inputs
 
 public class TweetContainer {
 
@@ -62,6 +63,12 @@ public class TweetContainer {
 			}
 		}
 		return this.urls;
+	}
+
+	//TODO: finish this
+	public TweetContainer getTweetsWithMention() {
+		TweetContainer tweets = new TweetContainer();
+		return tweets;
 	}
 	
 	

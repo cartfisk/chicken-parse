@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class TweetContainerTest {
 
+	//need to learn what these do, assuming by using these I could save a lot of lines where i make dummy containers to test...
 	@Before
 	public void setUp() throws Exception {
 	}
@@ -85,6 +86,16 @@ public class TweetContainerTest {
 		for (String url : expectedUrls) {
 			assertEquals(true, tweets2.getAllUrls().contains(url));
 		}
+	}
+	
+	//TODO: finish this
+	@Test
+	public void TestGetTweetsWithMention() {
+		TweetContainer tweets = new TweetContainer();
+		tweets.addTweet(new Tweet("@dogbot one"));
+		tweets.addTweet(new Tweet("@dogbot two"));
+		tweets.addTweet(new Tweet("not @notdogbot"));
+		TweetContainer tweetsWithMention = tweets.getTweetsWithMention();
 	}
 
 }
