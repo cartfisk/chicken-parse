@@ -23,6 +23,8 @@ public class Tweet {
 	}
 	
 	//called during construction of a Tweet obj.
+	//parses mentions, hashtags and urls out one at a time based on the regex string passed to it
+	//this could be optimized. should only pose a problem with significant scaling.
 	public ArrayList<String> parse(String regex) {
 		int group = 1;
 		if (regex.equals(regexUrl)) {
@@ -31,18 +33,19 @@ public class Tweet {
 		String tweet = this.tweetstring;
 		Pattern MY_PATTERN = Pattern.compile(regex);
 		Matcher match = MY_PATTERN.matcher(tweet);
-		ArrayList<String> mentions=new ArrayList<String>();
+		ArrayList<String> data = new ArrayList<String>();
 		while (match.find()) {
-		  mentions.add(match.group(group));
+		  data.add(match.group(group));
 		}
-		if (mentions.size() > 0) {
-			return mentions;
+		if (data.size() > 0) {
+			return data;
 		}
 		else {
 			return null;
 		}
 	}
 
+	//checker methods. determines whether a Tweet contains an input string as a mention/hashtag/url
 	public boolean isMention(String mention){
 		if (this.mentions.contains(mention)) {
 			return true;
@@ -63,7 +66,9 @@ public class Tweet {
 		}
 		return false;
 	}
-
+	
+	
+	//getter methods
 	public String getString() {
 		return this.tweetstring;
 	}
@@ -79,4 +84,25 @@ public class Tweet {
 	public ArrayList<String> getUrls() {
 		return this.urls;
 	}
+	
+	//setter methods (takes in preformed ArrayLists<string> of Tweet data.
+	//for testing and perceived use case of inputting pre-parsed data
+	public void setString(String tweetstring) {
+		this.tweetstring = tweetstring;
+	}
+
+	public void setMentions(ArrayList<String> mentions) {
+		this.mentions = mentions;
+	}
+	
+	public void getHashtags(ArrayList<String> hashtags) {
+		this.hashtags = hashtags;
+	}
+	
+	public void getUrls(ArrayList<String> urls) {
+		this.urls = urls;
+	}
+	
+	//adder methods (add a specific piece of data to a certain Tweet) to be added as needed
+
 }
