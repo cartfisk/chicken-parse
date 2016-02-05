@@ -1,6 +1,8 @@
 # chickenParse
-retrieve mentions, hashtags &amp; URLs from tweets
-
+retrieve mentions, hashtags &amp; URLs from tweets  
+  
+Read the Wiki for more information  
+  
 created with help from:
 
 	  http://www.regexplanet.com/advanced/java/index.html – regex testing
