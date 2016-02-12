@@ -32,8 +32,8 @@ Instructions
 
 #. Set up JUnit:
 
-If you are using Eclipse, JUnit is bundled with the Java IDE and testing should be functional right off the bat.
-If not, check here_ on how to get JUnit up and running.
+	If you are using Eclipse, JUnit is bundled with the Java IDE and testing should be functional right off the bat.
+	If not, check here_ on how to get JUnit up and running.
 
 
 #. Run the tests::
