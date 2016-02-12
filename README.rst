@@ -15,9 +15,9 @@ created with help from:
 
 	  https://www.youtube.com/watch?v=OluA0uJP9ts – setting up unit tests
 	
-	  @johnthompson – with RegEx tweaking via Slack
+	  @jthompson18 – with RegEx tweaking via Slack
 
-	  @ssmeke – with individual character processing
+	  @SalomonSmeke – with individual character processing
 
 Project Setup
 =============
