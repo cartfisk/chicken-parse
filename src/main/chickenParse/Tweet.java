@@ -1,4 +1,4 @@
-package chickenParse;
+package main.chickenParse;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -10,6 +10,9 @@ public class Tweet {
 	private ArrayList<String> mentions;
 	private ArrayList<String> hashtags;
 	private ArrayList<String> urls;
+	
+	/* Wondering if these regexes should be declared differently?
+	 * Perhaps they could be moved to an implementation file once that is created. */
 	private String regexMention = "(?:\\s|\\A)[@]+([A-Za-z0-9-_]{1,15})"; 
 	private String regexHashtag = "(?:\\s|\\A)[#]+([A-Za-z0-9-_]+)";
 	private String regexUrl = "\\(?\\b(http://|www[.])[-A-Za-z0-9+&amp;@#/%?=~_()|!:,.;]*[-A-Za-z0-9+&amp;@#/%=~_()|]";

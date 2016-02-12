@@ -1,4 +1,4 @@
-package chickenParse;
+package main.chickenParse;
 
 import java.util.ArrayList;
 

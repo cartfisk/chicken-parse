@@ -1,6 +1,7 @@
-package chickenParse;
+package test.chickenParse;
 
 import static org.junit.Assert.*;
+import main.chickenParse.*;
 
 import java.util.ArrayList;
 
